@@ -1,0 +1,18 @@
+# .gitignore
+
+# Pyrogram session file
+*.session
+*.session-journal
+
+# Temporary downloads
+temp_downloads/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE and OS specific files (optional, but good practice)
+.idea/
+.vscode/
+*.DS_Store
