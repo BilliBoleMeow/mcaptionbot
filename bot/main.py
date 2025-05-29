@@ -47,11 +47,11 @@ async def run_bot():
     app.add_handler(MessageHandler(process_history_command_handler, filters.command("processhistory") & filters.private))
     
     # Register message handler for direct files CORRECTLY
+    # This handles private messages that are media and NOT commands handled above.
     app.add_handler(MessageHandler(
         handle_direct_file_private_message,
         filters.private & 
-        ~filters.command() &  # <<< CORRECTED HERE
-        (filters.video | filters.audio | filters.document)
+        (filters.video | filters.audio | filters.document) # Removed the problematic ~filters.command()
     ))
     
     try:
