@@ -4,7 +4,7 @@ import asyncio
 import logging
 import os # For os.path.exists and os.makedirs
 from pyrogram import Client, filters
-from pyrogram.handlers import MessageHandler # <<< CORRECT IMPORT
+from pyrogram.handlers import MessageHandler
 
 # Import configurations from bot.config
 from bot.config import API_ID, API_HASH, BOT_TOKEN, SESSION_NAME, LOG_LEVEL, TEMP_DOWNLOAD_DIR
@@ -50,7 +50,7 @@ async def run_bot():
     app.add_handler(MessageHandler(
         handle_direct_file_private_message,
         filters.private & 
-        ~filters.command & 
+        ~filters.command() &  # <<< CORRECTED HERE
         (filters.video | filters.audio | filters.document)
     ))
     
